@@ -16,10 +16,10 @@ from chainer import cuda, training, reporter, function
 from chainer.training import StandardUpdater, extensions
 from chainer import serializers, optimizers, functions as F
 
-from entity import params
-from coco_data_loader import CocoDataLoader
+from .entity import params
+from .coco_data_loader import CocoDataLoader
 
-from models import CocoPoseNet
+from .models import CocoPoseNet
 
 
 class GradientScaling(object):

@@ -8,7 +8,7 @@ import numpy as np
 from chainer.dataset import DatasetMixin
 from pycocotools.coco import COCO
 
-from entity import JointType, params
+from .entity import JointType, params
 
 
 class CocoDataLoader(DatasetMixin):

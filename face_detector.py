@@ -4,8 +4,8 @@ import numpy as np
 from scipy.ndimage.filters import gaussian_filter
 import chainer
 from chainer import cuda, serializers, functions as F
-from entity import params
-from models.FaceNet import FaceNet
+from .entity import params
+from .models.FaceNet import FaceNet
 
 chainer.using_config('enable_backprop', False)
 

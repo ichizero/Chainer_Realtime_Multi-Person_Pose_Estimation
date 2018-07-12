@@ -6,7 +6,7 @@ import numpy as np
 
 from pycocotools.coco import COCO
 
-from entity import params
+from .entity import params
 
 
 class CocoDataLoader(object):

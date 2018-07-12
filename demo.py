@@ -1,10 +1,10 @@
 import cv2
 import argparse
 import chainer
-from entity import params
-from pose_detector import PoseDetector, draw_person_pose
-from face_detector import FaceDetector, draw_face_keypoints
-from hand_detector import HandDetector, draw_hand_keypoints
+from .entity import params
+from .pose_detector import PoseDetector, draw_person_pose
+from .face_detector import FaceDetector, draw_face_keypoints
+from .hand_detector import HandDetector, draw_hand_keypoints
 
 chainer.using_config('enable_backprop', False)
 
