@@ -1,3 +1,4 @@
+import sys
 import cv2
 import math
 import time
@@ -268,7 +269,7 @@ class PoseDetector(object):
         limbs = []
         limbs_len = np.zeros(len(params["limbs_point"]))
         for i, joint_indices in enumerate(params["limbs_point"]):
-            if joints[joint_indices[0]] is not None and joints[joint_indices[1]] is not None:
+            if joints[joint_indices[0]].all() and joints[joint_indices[1]].all():
                 limbs.append([joints[joint_indices[0]], joints[joint_indices[1]]])
                 limbs_len[i] = np.linalg.norm(joints[joint_indices[1]][:-1] - joints[joint_indices[0]][:-1])
             else:
@@ -312,8 +313,8 @@ class PoseDetector(object):
         top_joint_priority = [4, 5, 6, 12, 16, 7, 13, 17, 8, 10, 14, 9, 11, 15, 2, 3, 0, 1, sys.maxsize]
         bottom_joint_priority = [9, 6, 7, 14, 16, 8, 15, 17, 4, 2, 0, 5, 3, 1, 10, 11, 12, 13, sys.maxsize]
 
-        top_joint_index = len(top_joint_priority) - 1
-        bottom_joint_index = len(bottom_joint_priority) - 1
+        top_joint_index = len(top_joint_priority) - 2
+        bottom_joint_index = len(bottom_joint_priority) - 2
         left_joint_index = 0
         right_joint_index = 0
         top_pos = sys.maxsize
@@ -403,6 +404,9 @@ class PoseDetector(object):
         img_h, img_w, img_ch = img.shape
         box_h = bottom - top
         box_w = right - left
+
+        box_h = box_h if box_h > 1 else 1
+        box_w = box_w if box_w > 1 else 1
 
         crop_left = max(0, left)
         crop_top = max(0, top)
