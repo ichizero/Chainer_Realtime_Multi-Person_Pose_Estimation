@@ -145,7 +145,7 @@ class PoseDetector(object):
                 ys = np.linspace(joint_a[1], joint_b[1], num=params['n_integ_points'])
                 xs = np.linspace(joint_a[0], joint_b[0], num=params['n_integ_points'])
                 integ_points = np.stack([ys, xs]).T.round().astype('i')  # joint_aとjoint_bの2点間を結ぶ線分上の座標点 [[x1, y1], [x2, y2]...]
-                paf_in_edge = np.hstack([paf[0][np.hsplit(integ_points, 2)], paf[1][np.hsplit(integ_points, 2)]])
+                paf_in_edge = np.hstack((paf[0][tuple(np.hsplit(integ_points, 2))], paf[1][tuple(np.hsplit(integ_points, 2))]))
                 unit_vector = vector / norm
                 inner_products = np.dot(paf_in_edge, unit_vector)
 
